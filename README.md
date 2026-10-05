@@ -7,7 +7,7 @@ Please fill in the group names and members here:
 - Greta Simeliunaite and Csenge Soter
 - Deim, Tartarotti, Weber
 - Data Queens: Tim Brecht, Panna Bodnar, Chiara D'Amico
-- 
+- Git Happens: Sophia Leah Ravner, Alesia Kokonaj
 - 
 - 
 - 
