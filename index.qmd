@@ -9,22 +9,42 @@ bibliography: bibliography.bib
 
 https://github.com/schmoigl/test-project/
 
-This Quarto file is showcasing what Quarto can od. [This is a link](https://data-science.wifo.ac.at/lecture-notes/){target="_blank"} to the lecture notes.
+This Quarto file is showcasing what Quarto can do. Everything outside of code chunks is written in **Markdown**, a simple syntax for formatting plain text.
 
-*bold text* **cursive**
+## Links
 
-<a href="https://data-science.wifo.ac.at/lecture-notes/">Same link</a>
+Write links as `[text](url)`. Options go in curly braces afterwards, e.g. `{target="_blank"}` opens the link in a new tab: [This is a link](https://data-science.wifo.ac.at/lecture-notes/){target="_blank"} to the lecture notes.
+
+Since the output is a web page, you can also write plain HTML: <a href="https://data-science.wifo.ac.at/lecture-notes/">Same link</a>
+
+## Text formatting
+
+One star makes text italic (`*italic*`), two stars make it bold (`**bold**`): *italic text* **bold text**
+
+## Images
+
+Images work like links, but with a `!` in front: `![caption](path)`. Size and alignment are set in curly braces:
 
 ![Images](img/wu.svg){width=200 fig-align="left"}
 
+## Formulas
+
+You can write LaTeX (TeX) formulas. Enclose them in `$...$` for a formula within the text, like $x_1 + x_2$, or in `$$...$$` for a centered formula on its own line:
 
 $$ x_1 + x_2 $$
 
-As seen @eppel2024active
+## Citations
+
+References are stored in `bibliography.bib` (linked in the header at the top of this file). Cite them with `@key`, and Quarto adds the reference list at the end of the page automatically: As seen @eppel2024active
+
+## R code
+
+Code chunks start with ```` ```{r} ````. Options are set with `#|` at the top of a chunk, e.g. `#| echo: false` runs the code but hides it in the output:
 
 ```{r}
 #| eval: true
 #| output: true
+#| echo: false
 library(tidyverse)
 library(kableExtra)
 
@@ -40,13 +60,21 @@ plot_data <- data %>%
   ungroup()
 
 write_csv(plot_data, "data/plot_data.csv")
+```
 
+Without options, both the code and its output (here a table) are shown:
+
+```{r}
 plot_data %>%
   filter(row_number() <= 15) %>%
   kable("html")
 ```
 
-The first case is the case `{r} data$case_nr[1]`
+With inline code (`` `{{r}} data$case_nr[1]` ``) results appear directly in the text, so numbers update automatically when the data changes: The first case is the case `{r} data$case_nr[1]`
+
+## Interactive elements (OJS)
+
+OJS chunks (```` ```{ojs} ````) run JavaScript in the reader's browser, so the page stays interactive without a server. Move the slider:
 
 ```{ojs}
 viewof rating = Inputs.range([1, 10], {value: 5, step: 1, label: "Rating"})
@@ -54,7 +82,7 @@ viewof rating = Inputs.range([1, 10], {value: 5, step: 1, label: "Rating"})
 
 I would rate this class `{ojs} rating`
 
-
+OJS can read the data that the R code saved above:
 
 ```{ojs}
 raw = FileAttachment("data/plot_data.csv")
@@ -65,6 +93,8 @@ plot_data
 
 new Set(plot_data.map(d => d.court))
 ```
+
+The chart and text below react to the inputs. OJS cells may appear in any order, since they update whenever a value they depend on changes:
 
 ```{ojs}
 import {vl} from "@vega/vega-lite-api"
@@ -84,12 +114,12 @@ vl.markLine()
 
 ```{ojs}
 viewof court = Inputs.select(
-  ["BG Favoriten", "BG Fünfhaus"], 
+  ["BG Favoriten", "BG Fünfhaus"],
   {label: "Select a court: "}
   )
 
 viewof month = Inputs.select(
-  ["2008-01-01", "2009-01-01"], 
+  ["2008-01-01", "2009-01-01"],
   {label: "Select a year: "}
   )
 
