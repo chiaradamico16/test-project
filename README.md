@@ -8,7 +8,7 @@ Please fill in the group names and members here:
 - Deim, Tartarotti, Weber
 - Data Queens: Tim Brecht, Panna Bodnar, Chiara D'Amico
 - Git Happens: Sophia Leah Ravner, Alesia Kokonaj
-- The Biased Priors: Lorenz Rausch, Ryan McCann, Lorenz Bodner
+- The Biased Priors: Ryan McCann, Lorenz Rausch, Lorenz Bodner
 - 
 - 
 - 
