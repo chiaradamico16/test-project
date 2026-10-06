@@ -4,3 +4,5 @@ format:
   html:
     layout: article
     css: style.css
+execute:
+  freeze: auto
