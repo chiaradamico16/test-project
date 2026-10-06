@@ -39,12 +39,23 @@ References are stored in `bibliography.bib` (linked in the header at the top of 
 
 ## R code
 
-Code chunks start with ```` ```{r} ````. Options are set with `#|` at the top of a chunk, e.g. `#| echo: false` runs the code but hides it in the output:
+Code chunks start with ```` ```{r} ````. Execution options are set with `#|` at the top of a chunk and control what is run and what is shown:
+
+| Option | What it does |
+|---|---|
+| `eval: false` | Do not run the code (just show it) |
+| `echo: false` | Run the code, but hide it in the output |
+| `output: false` | Run the code, but hide all of its results |
+| `message: false` | Hide messages (e.g. when loading packages) |
+| `warning: false` | Hide warnings |
+| `error: true` | Show errors in the output instead of stopping the render |
+| `include: false` | Run the code, but hide both code and results |
+
+Options can also be set for the whole document in the header at the top (e.g. `execute: echo: false`). The chunk below shows its code (`echo: true`) but hides the package messages (`message: false`):
 
 ```{r}
-#| eval: true
-#| output: true
-#| echo: false
+#| echo: true
+#| message: false
 library(tidyverse)
 library(kableExtra)
 

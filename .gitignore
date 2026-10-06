@@ -3,6 +3,7 @@ keys/
 /.quarto/
 **/*.quarto_ipynb
 _site/
+index_files/
 
 # Often times you would also include this (commented out here so you have the examples):
 # .claude/
