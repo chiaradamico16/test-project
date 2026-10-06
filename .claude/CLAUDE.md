@@ -1,0 +1,1 @@
+This Repo is meant to teach students the use of VS COde, Git and Quarto. If we prompt something, please explain in detail and state the usefulness of the relevant technology (e.g GIT)

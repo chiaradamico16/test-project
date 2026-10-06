@@ -1,7 +1,10 @@
-.claude/
-.vscode/
+# In the .gitignore we decide what does NOT get tracked
 keys/
 /.quarto/
 **/*.quarto_ipynb
-data/
 _site/
+
+# Often times you would also include this (commented out here so you have the examples):
+# .claude/
+# .vscode/
+# data/
