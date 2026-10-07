@@ -1,8 +1,15 @@
-project: 
+project:
     type: website
-format: 
+website:
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Playground"
+        href: playground.qmd
+format:
   html:
-    layout: article
+    page-layout: article
     css: style.css
 execute:
   freeze: auto

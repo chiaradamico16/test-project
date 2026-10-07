@@ -27,6 +27,48 @@ Images work like links, but with a `!` in front: `![caption](path)`. Size and al
 
 ![Images](img/wu.svg){width=200 fig-align="left"}
 
+## Divs, classes and IDs
+
+Quarto turns every element into HTML, and you can label elements so that CSS rules (in `style.css`) can target them:
+
+- A **class** (`.name`) can be given to many elements, and every one of them gets the same style.
+- An **ID** (`#name`) must be unique on the page and targets exactly one element.
+- A **div** (`::: {.name}` … `:::`) is a box that groups several elements, so you can style them together.
+
+Classes and IDs go in curly braces after a link or image. This link has the class `myLink` (green, no underline). Move your mouse over it: the `:hover` rule in `style.css` underlines it and makes it darker:
+
+```markdown
+[Link to WIFO](https://www.wifo.ac.at){target="_blank" .myLink}
+```
+
+[Link to WIFO](https://www.wifo.ac.at){target="_blank" .myLink}
+
+This link also has the ID `bigLink`, so the `#bigLink` rule makes it bigger as well:
+
+```markdown
+[Big link to WIFO](https://www.wifo.ac.at){target="_blank" .myLink #bigLink}
+```
+
+[Big link to WIFO](https://www.wifo.ac.at){target="_blank" .myLink #bigLink}
+
+Both logos below have the class `myLogo`, which makes logos 100px wide. The second one sits inside a div with the class `imageContainer`, and the rule `.imageContainer .myLogo` (200px) only applies to logos inside such a div:
+
+```markdown
+![Outside the div](img/wu.svg){fig-align="left" .myLogo}
+
+::: {.imageContainer}
+![Inside the div](img/wu.svg){fig-align="left" .myLogo}
+:::
+```
+
+![Outside the div](img/wu.svg){fig-align="left" .myLogo}
+
+::: {.imageContainer}
+![Inside the div](img/wu.svg){fig-align="left" .myLogo}
+:::
+
+Quarto also comes with built-in classes. For example, `.column-screen-inset` lets content break out of the narrow text column and use (almost) the full screen width. The table in the R section below uses it.
+
 ## Formulas
 
 You can write LaTeX (TeX) formulas. Enclose them in `$...$` for a formula within the text, like $x_1 + x_2$, or in `$$...$$` for a centered formula on its own line:
@@ -73,13 +115,17 @@ plot_data <- data %>%
 write_csv(plot_data, "data/plot_data.csv")
 ```
 
-Without options, both the code and its output (here a table) are shown:
+Without options, both the code and its output (here a table) are shown. The chunk is wrapped in a `::: {.column-screen-inset}` div, so the table uses the full screen width:
+
+::: {.column-screen-inset}
 
 ```{r}
 plot_data %>%
   filter(row_number() <= 15) %>%
   kable("html")
 ```
+
+:::
 
 With inline code (`` `{{r}} data$case_nr[1]` ``) results appear directly in the text, so numbers update automatically when the data changes: The first case is the case `{r} data$case_nr[1]`
 
@@ -119,8 +165,16 @@ vl.markLine()
       .fieldQ("cases"),
   )
   .data(plot_data.filter(d => d.court == court))
+  .width(width - 100)
+  .height(300)
 //   .config(config)
   .render({ renderer: "svg" })
+```
+
+The chart width is set with `.width(width - 100)`. `width` is a built-in OJS value: the width of the page's text column in pixels. It updates whenever the browser window is resized, and everything that uses it (like the chart) is redrawn. We subtract 100 to leave room for the axis labels. Resize your window and watch the number below change:
+
+```{ojs}
+width
 ```
 
 ```{ojs}
