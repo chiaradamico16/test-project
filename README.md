@@ -5,7 +5,7 @@ This is a template repo for the field course "Data Science and Machine Learning"
 
 Please fill in the group names and members here:
 - Greta Simeliunaite and Csenge Soter
-- Deim, Tartarotti, Weber
+- R.-Bytes-Loss(): Deim, Tartarotti, Weber
 - Data Queens: Tim Brecht, Panna Bodnar, Chiara D'Amico
 - Git Happens: Sophia Leah Ravner, Alesia Kokonaj
 - 
