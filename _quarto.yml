@@ -1,12 +1,13 @@
 project:
-    type: website
+  type: website
+  preview: 
+    port: 1111
+    browser: false
 website:
   navbar:
     left:
       - text: "Home"
         href: index.qmd
-      - text: "Playground"
-        href: playground.qmd
 format:
   html:
     page-layout: article

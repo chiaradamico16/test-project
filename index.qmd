@@ -11,23 +11,17 @@ https://github.com/schmoigl/test-project/
 
 This Quarto file is showcasing what Quarto can do. Everything outside of code chunks is written in **Markdown**, a simple syntax for formatting plain text.
 
-## Links
+## Basic Syntax
+
+One star makes text italic (`*italic*`), two stars make it bold (`**bold**`): *italic text* **bold text**
 
 Write links as `[text](url)`. Options go in curly braces afterwards, e.g. `{target="_blank"}` opens the link in a new tab: [This is a link](https://data-science.wifo.ac.at/lecture-notes/){target="_blank"} to the lecture notes.
 
 Since the output is a web page, you can also write plain HTML: <a href="https://data-science.wifo.ac.at/lecture-notes/">Same link</a>
 
-## Text formatting
-
-One star makes text italic (`*italic*`), two stars make it bold (`**bold**`): *italic text* **bold text**
-
-## Images
-
 Images work like links, but with a `!` in front: `![caption](path)`. Size and alignment are set in curly braces:
 
 ![Images](img/wu.svg){width=200 fig-align="left"}
-
-## Divs, classes and IDs
 
 Quarto turns every element into HTML, and you can label elements so that CSS rules (in `style.css`) can target them:
 
@@ -51,33 +45,37 @@ This link also has the ID `bigLink`, so the `#bigLink` rule makes it bigger as w
 
 [Big link to WIFO](https://www.wifo.ac.at){target="_blank" .myLink #bigLink}
 
-Both logos below have the class `myLogo`, which makes logos 100px wide. The second one sits inside a div with the class `imageContainer`, and the rule `.imageContainer .myLogo` (200px) only applies to logos inside such a div:
+Divs are useful when several elements belong together, e.g. a "key findings" box as in many reports. The div below has the class `keyFindings`, which draws one box around the heading, text and list inside it. The rule `.keyFindings strong` makes **bold text** red, but only inside such a box:
 
 ```markdown
-![Outside the div](img/wu.svg){fig-align="left" .myLogo}
+::: {.keyFindings}
+#### Key findings
 
-::: {.imageContainer}
-![Inside the div](img/wu.svg){fig-align="left" .myLogo}
+- Quarto combines **text, code and results** in one document
+- Results **update automatically** when the data changes
 :::
 ```
 
-![Outside the div](img/wu.svg){fig-align="left" .myLogo}
+::: {.keyFindings}
+#### Key findings
 
-::: {.imageContainer}
-![Inside the div](img/wu.svg){fig-align="left" .myLogo}
+- Quarto combines **text, code and results** in one document
+- Results **update automatically** when the data changes
 :::
+
+Since the style lives in `style.css`, every `keyFindings` box in the whole website looks the same, and changing one CSS rule restyles all of them.
 
 Quarto also comes with built-in classes. For example, `.column-screen-inset` lets content break out of the narrow text column and use (almost) the full screen width. The table in the R section below uses it.
 
-## Formulas
+## TeX
+
+TeX (or LaTeX) is the standard typesetting system in science. Quarto borrows two of its most useful features: formulas and references.
 
 You can write LaTeX (TeX) formulas. Enclose them in `$...$` for a formula within the text, like $x_1 + x_2$, or in `$$...$$` for a centered formula on its own line:
 
 $$ x_1 + x_2 $$
 
-## Citations
-
-References are stored in `bibliography.bib` (linked in the header at the top of this file). Cite them with `@key`, and Quarto adds the reference list at the end of the page automatically: As seen @eppel2024active
+References are stored in `bibliography.bib`, in the BibTeX format used by LaTeX (linked in the header at the top of this file). Cite them with `@key`, and Quarto adds the reference list at the end of the page automatically: As seen @eppel2024active
 
 ## R code
 
@@ -165,13 +163,13 @@ vl.markLine()
       .fieldQ("cases"),
   )
   .data(plot_data.filter(d => d.court == court))
-  .width(width - 100)
+  .width(width / 2)
   .height(300)
 //   .config(config)
   .render({ renderer: "svg" })
 ```
 
-The chart width is set with `.width(width - 100)`. `width` is a built-in OJS value: the width of the page's text column in pixels. It updates whenever the browser window is resized, and everything that uses it (like the chart) is redrawn. We subtract 100 to leave room for the axis labels. Resize your window and watch the number below change:
+The chart width is set with `.width(width / 2)`. `width` is a built-in OJS value: the width of the page's text column in pixels. It updates whenever the browser window is resized, and everything that uses it (like the chart) is redrawn. We subtract 100 to leave room for the axis labels. Resize your window and watch the number below change:
 
 ```{ojs}
 width
