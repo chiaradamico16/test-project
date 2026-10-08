@@ -45,27 +45,39 @@ This link also has the ID `bigLink`, so the `#bigLink` rule makes it bigger as w
 
 [Big link to WIFO](https://www.wifo.ac.at){target="_blank" .myLink #bigLink}
 
-Divs are useful when several elements belong together, e.g. a "key findings" box as in many reports. The div below has the class `keyFindings`, which draws one box around the heading, text and list inside it. The rule `.keyFindings strong` makes **bold text** red, but only inside such a box:
+Quarto also comes with built-in classes, so you don't have to write the CSS yourself. With `.columns` and `.column`, content is placed side by side. Divs can be nested: the outer div needs more colons (`::::`) than the inner ones, so Quarto knows which `:::` closes which div:
 
 ```markdown
-::: {.keyFindings}
-#### Key findings
+:::: {.columns}
 
-- Quarto combines **text, code and results** in one document
-- Results **update automatically** when the data changes
+::: {.column width="50%"}
+#### Left column
+Text, images or code output.
 :::
+
+::: {.column width="50%"}
+#### Right column
+More text, images or code output.
+:::
+
+::::
 ```
 
-::: {.keyFindings}
-#### Key findings
+:::: {.columns}
 
-- Quarto combines **text, code and results** in one document
-- Results **update automatically** when the data changes
+::: {.column width="50%"}
+#### Left column
+Text, images or code output.
 :::
 
-Since the style lives in `style.css`, every `keyFindings` box in the whole website looks the same, and changing one CSS rule restyles all of them.
+::: {.column width="50%"}
+#### Right column
+More text, images or code output.
+:::
 
-Quarto also comes with built-in classes. For example, `.column-screen-inset` lets content break out of the narrow text column and use (almost) the full screen width. The table in the R section below uses it.
+::::
+
+Another built-in class, `.column-screen-inset`, lets content break out of the narrow text column and use (almost) the full screen width. The table in the R section below uses it.
 
 ## TeX
 
