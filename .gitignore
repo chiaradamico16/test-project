@@ -4,6 +4,7 @@ keys/
 **/*.quarto_ipynb
 _site/
 index_files/
+*.parquet
 
 # Often times you would also include this (commented out here so you have the examples):
 # .claude/
