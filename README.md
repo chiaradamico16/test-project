@@ -11,7 +11,7 @@ Add your team (name + members) on an empty `- ` line below:
 
 - No Overfitting, Just Overthinking: Greta Simeliunaite and Csenge Soter
 - R.-Bytes-Loss(): Deim, Tartarotti, Weber
-- Data Queens: Tim Brecht, Panna Bodnar, Chiara D'Amico
+- commit(ment) issues: Tim Brecht, Panna Bodnar, Chiara D'Amico
 - Git Happens: Sophia Leah Ravner, Alesia Kokonaj
 - The Biased Priors: Ryan McCann, Lorenz Rausch, Lorenz Bodner
 - The Matrix Confusers : Thomas, Isabella 
